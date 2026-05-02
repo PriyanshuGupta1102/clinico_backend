@@ -20,6 +20,19 @@ if (process.env.SENDGRID_API_KEY && process.env.SENDGRID_API_KEY.startsWith('SG.
   console.log('⚠️  SendGrid API key not configured');
 }
 
+app.get('/', (req, res) => {
+  res.json({ 
+    name: 'Clinico API', 
+    version: '1.0.0', 
+    status: 'running',
+    message: 'Welcome to Clinico Healthcare API',
+    endpoints: {
+      health: '/api/health',
+      auth: '/api/*'
+    }
+  });
+});
+
 app.use('/api', authRoutes);
 
 app.get('/api/health', (req, res) => {
